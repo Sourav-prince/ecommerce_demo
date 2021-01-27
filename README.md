@@ -1,4 +1,4 @@
-### Pokedex React APP
+### ecommerce demo app
 demo https://sourav-shoe-mart.herokuapp.com/
 ## installation
 Follow these steps
