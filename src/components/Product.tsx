@@ -5,8 +5,9 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+
+import { getDynamicPrice } from '../utils/prices';
 
 const useStyles = makeStyles({
   root: {
@@ -16,37 +17,44 @@ const useStyles = makeStyles({
   media: {
     height: 140,
   },
+  price: {
+    textAlign: 'center',
+    width: '100%'
+  },
 });
 
-export default function MediaCard() {
-  const classes = useStyles();
-
+const Product = (props:any) => {
+  const classes = useStyles()
+  const { data, selectedCurrency } = props
   return (
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          image={data.imgUrl}
+          title={data.name}
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          <Typography 
+            className={classes.price} 
+            gutterBottom 
+            variant="subtitle1" 
+            component="div">
+            {data.name}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
+        <Typography 
+          className={classes.price} 
+          color="primary" 
+          variant="subtitle1" 
+          component="div">
+          {getDynamicPrice(data.price,selectedCurrency)}
+        </Typography>
       </CardActions>
     </Card>
   );
 }
+
+export default Product
