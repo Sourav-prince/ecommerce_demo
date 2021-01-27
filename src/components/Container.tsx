@@ -1,13 +1,13 @@
 import React from 'react'
 import Header from './Header'
-import Product from './Product'
+import ProductList from './ProductList'
 import '../assets/styles/index.css'
 
 const Container = () => {
   return (
     <>
       <Header/>
-      <Product/>
+      <ProductList/>
     </>
   )
 }
